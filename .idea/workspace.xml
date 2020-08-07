@@ -24,6 +24,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="run.prettier.on.save" value="true" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
@@ -40,7 +41,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596823151025</updated>
-      <workItem from="1596823152909" duration="1678000" />
+      <workItem from="1596823152909" duration="7404000" />
     </task>
     <servers />
   </component>
@@ -48,6 +49,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="556" y="300" width="479" height="252" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596824955310">
+      <screen x="0" y="0" width="1600" height="850" />
+    </state>
+    <state x="556" y="300" width="479" height="252" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1600.850@0.0.1600.850" timestamp="1596824955310" />
     <state x="296" y="60" width="1007" height="732" key="SettingsEditor" timestamp="1596824588910">
       <screen x="0" y="0" width="1600" height="850" />
     </state>
