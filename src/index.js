@@ -1,5 +1,10 @@
 const sleep = require("./utils/sleep");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+
+puppeteer.use(StealthPlugin());
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 const exportFunc = async () => {
     // consts
@@ -8,6 +13,12 @@ const exportFunc = async () => {
     const telAvivSvidorCenterText = "תל אביב - סבידור מרכז";
     const dateText = "09/08/2020";
     const timeRangeText = "08:00";
+    const idNumber = "314620006";
+    const email = "royhadad98@gmail.com";
+    const phoneNumber = "0544970131";
+    const gmailUrl = "https://mail.google.com/mail/u/0/#inbox";
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPassword = process.env.GMAIL_PASSWORD;
 
     // launce
     const browser = await puppeteer.launch({ headless: false });
@@ -19,12 +30,10 @@ const exportFunc = async () => {
     // search
     await page.focus('[aria-label="בחר תחנת מוצא"]');
     await page.keyboard.type(yavneWestText);
-    // await sleep(2000);
     await page.keyboard.press("Enter");
 
     await page.focus('[aria-label="בחר תחנת יעד"]');
     await page.keyboard.type(telAvivSvidorCenterText);
-    // await sleep(2000);
     await page.keyboard.press("Enter");
 
     await page.click('[aria-label="בחר תאריך ושעת יציאה לרכבת הלוך"]');
@@ -41,9 +50,10 @@ const exportFunc = async () => {
             (item) => item.innerText === "08:00"
         );
         selectedTimeRangeElement.click();
+        document
+            .querySelector('[ng-click="SetHourFrom(hoursFrom.select);"]')
+            .click();
     });
-
-    await page.click(".CloseBtn");
 
     await page.evaluate(() => {
         const buttonsList = Array.from(document.querySelectorAll("button"));
@@ -52,22 +62,56 @@ const exportFunc = async () => {
         );
         searchButton.click();
     });
-
+    await page.waitForNavigation({ waitUntil: "networkidle0" });
     // select specific ride
 
     await page.evaluate(() => {
-        const wrapper = document.querySelectorAll('[role="radiogroup"]');
-        console.log(wrapper);
-        // const rides = Array.from(
-        //     wrapper.querySelectorAll("div.ng-binding.ng-scope")
-        // );
+        const results = Array.from(
+            document.querySelectorAll('[id^="railRadio_"]')
+        );
+        const selectedTrain = results.find((result) => {
+            const exactTimeText = "08:12";
 
-        // console.log(rides);
+            const time = result.querySelector('[id^="timegoing_fwd_"]');
+            const innerTimeHTML = Array.from(time.querySelectorAll(".hours"))[0]
+                .innerHTML;
+            const startIndex = innerTimeHTML.indexOf("</span>") + 7;
+            const timeText = innerTimeHTML.slice(startIndex, startIndex + 5);
+            return timeText === exactTimeText;
+        });
+        selectedTrain.querySelector("button.jerusalem-voucher").click();
     });
+    await page.waitForNavigation({ waitUntil: "networkidle0" });
 
-    // close
-    // await page.waitFor(6000);
-    // await browser.close();
+    // fill ticket order form
+    await page.focus("input#card-number");
+    await page.keyboard.type(`${idNumber}`);
+
+    await page.focus("input#email-address");
+    await page.keyboard.type(`${email}`);
+
+    await page.focus("input#mobile");
+    await page.keyboard.type(`${phoneNumber}`);
+
+    await page.click("input#agree");
+
+    await page.click('[ng-click="submitted=true;acceptInvitationFunc()"]');
+
+    // get code from SMS
+
+    const gmailPage = await browser.newPage();
+    await gmailPage.goto(gmailUrl);
+
+    await gmailPage.focus("input#identifierId");
+    await gmailPage.keyboard.type(gmailUser);
+    await page.keyboard.press("Enter");
+
+    // // close
+    // // await page.waitFor(6000);
+    // // await browser.close();
 };
 
 module.exports = exportFunc;
+
+// id mom 059269035
+// email mom osih11@walla.co.il

@@ -41,7 +41,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596823151025</updated>
-      <workItem from="1596823152909" duration="7404000" />
+      <workItem from="1596823152909" duration="20703000" />
     </task>
     <servers />
   </component>
@@ -49,6 +49,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="545" y="231" width="501" height="389" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596917852468">
+      <screen x="0" y="0" width="1600" height="850" />
+    </state>
+    <state x="545" y="231" width="501" height="389" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.850@0.0.1600.850" timestamp="1596917852468" />
     <state x="556" y="300" width="479" height="252" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596824955310">
       <screen x="0" y="0" width="1600" height="850" />
     </state>
@@ -57,5 +61,9 @@
       <screen x="0" y="0" width="1600" height="850" />
     </state>
     <state x="296" y="60" width="1007" height="732" key="SettingsEditor/0.0.1600.850@0.0.1600.850" timestamp="1596824588910" />
+    <state x="463" y="171" width="672" height="678" key="search.everywhere.popup" timestamp="1596917977994">
+      <screen x="0" y="0" width="1600" height="850" />
+    </state>
+    <state x="463" y="171" width="672" height="678" key="search.everywhere.popup/0.0.1600.850@0.0.1600.850" timestamp="1596917977994" />
   </component>
 </project>

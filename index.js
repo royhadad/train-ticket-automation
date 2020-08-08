@@ -1,3 +1,4 @@
+require("dotenv").config();
 const exportFunc = require("./src");
 
 console.log("started");
